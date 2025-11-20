@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DECOR.IN | Diseño de Interiores</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'primary-light': '#F9F9F9',
+                'primary-dark': '#363231',
+                'accent-olive': '#707955',
+                'gray-light': '#F1F0EC',
+                'gray-dark': '#888685',
+                'dark-hover': '#596042',
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+              }
+            }
+          }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        a, button {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* [CORREGIDO] Estilo para el botón de filtro activo (con la '}' añadida) */
+        .filter-btn.active-filter {
+            background-color: #363231; /* bg-primary-dark */
+            color: white;
+            border-color: #363231; /* border-primary-dark */
+        }
+        /* === [NUEVO] ESTILOS PARA EL HERO CON PARALLAX === */
+    .hero-parallax {
+        /* (Usa una de tus imágenes de Pinterest o una de Unsplash) */
+        background-image: url('https://i.pinimg.com/736x/16/45/9c/16459c9e41f706cbfa23064e0f614c44.jpg');
+        
+        background-size: cover;
+        background-position: center center;
+        
+        /* El "truco" para el parallax simple */
+        background-attachment: fixed; 
+        
+        position: relative; /* Necesario para el overlay */
+    }
+
+    /* Overlay oscuro para legibilidad del texto */
+    .hero-parallax::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4); /* Overlay negro al 40% */
+        z-index: 1; /* Se pone detrás del texto (que tiene z-10) */
+    }
+    </style>
+    
+    <script src="./js/main.js" defer></script>
+
+</head>
+
+<body class="font-sans bg-primary-light text-primary-dark">
+
+    <header class="bg-white shadow-sm py-4 w-full sticky top-0 z-50">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+            <div class="flex items-center space-x-2">
+                <a href="#inicio" class="flex items-center space-x-2">
+                    <img src="./images/Logov2.png" alt="DECOR.IN Logo" class="h-14"> 
+                    <span class="text-xl font-bold text-primary-dark">DECOR.IN</span>
+                </a>
+            </div>
+            <nav id="nav-menu" class="hidden absolute md:static top-[72px] left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none md:flex items-center space-y-4 md:space-y-0 p-4 md:p-0 md:space-x-8 text-sm font-medium">
+                <a href="#inicio" class="block md:inline text-primary-dark hover:text-gray-dark">Inicio</a>
+                <a href="#servicios" class="block md:inline text-primary-dark hover:text-gray-dark">Servicios</a>
+                <a href="#proceso" class="block md:inline text-primary-dark hover:text-gray-dark">Proceso</a>
+                <a href="#portafolio" class="block md:inline text-primary-dark hover:text-gray-dark">Portafolio</a>
+                
+                <a href="#contacto" class="block md:inline lg:hidden text-primary-dark hover:text-gray-dark">Contacto</a>
+
+                <a href="#contacto" class="block md:hidden lg:block bg-accent-olive text-white px-5 py-2 rounded-md font-semibold hover:bg-dark-hover ml-4">
+                    Cotizar Proyecto
+                </a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-primary-dark text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="inicio" class="py-20 md:py-32 text-center hero-parallax">
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                Transformamos espacios <br> en experiencias
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                Diseño de interiores residencial y comercial en Lima, Perú. Creamos ambientes funcionales y estéticamente únicos.
+            </p>
+            </div>
+    </section>
+
+    <section id="servicios" class="py-20 md:py-24 bg-gray-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-primary-dark mb-4">Nuestros Servicios</h2>
+            <p class="text-lg text-center text-gray-dark mb-16 max-w-3xl mx-auto">
+                Ofrecemos soluciones integrales de diseño de interiores adaptadas a tus necesidades.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white transition-colors duration-300 group-hover:bg-accent-olive">
+                    <i class="fas fa-home text-xl"></i>
+                    </div>        
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Diseño de Interiores residencial</h3>
+                        <p class="text-gray-dark text-sm">Hogares, departamentos, lofts. Creamos espacios cómodos y estéticos que reflejan tu estilo de vida.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white transition-colors duration-300 group-hover:bg-accent-olive">
+                    <i class="fas fa-home text-xl"></i>
+                    </div>        
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Diseño de Interiores comercial</h3>
+                        <p class="text-gray-dark text-sm">Oficinas, tiendas, restaurantes, hoteles. Maximizando la funcionalidad y estética de tu negocio.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white transition-colors duration-300 group-hover:bg-accent-olive">
+                    <i class="fas fa-home text-xl"></i>
+                    </div>                            
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Diseño conceptual y renders 3D</h3>
+                        <p class="text-gray-dark text-sm">Desarrollo de ideas creativas, paletas de colores y visualización fotorrealista de tu proyecto.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white"><i class="fas fa-couch text-xl"></i></div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Planificación y mobiliario</h3>
+                        <p class="text-gray-dark text-sm">Optimización de layouts, flujo de circulación y selección o diseño de mobiliario a medida.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white transition-colors duration-300 group-hover:bg-accent-olive">
+                    <i class="fas fa-home text-xl"></i>
+                    </div>                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Decoración y estilismo</h3>
+                        <p class="text-gray-dark text-sm">Selección de accesorios, arte, textiles y elementos decorativos para embellecer tu espacio.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 group flex items-start space-x-4">
+                    <div class="flex-shrink-0 bg-primary-dark rounded-full p-3 text-white transition-colors duration-300 group-hover:bg-accent-olive">
+                    <i class="fas fa-home text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Gestión y ejecución de obra</h3>
+                        <p class="text-gray-dark text-sm">Supervisión de equipos, coordinación con proveedores y gestión integral del proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso" class="py-20 md:py-24 bg-primary-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-primary-dark mb-4">Nuestro Proceso de Trabajo</h2>
+            <p class="text-lg text-center text-gray-dark mb-16 max-w-3xl mx-auto">
+                Te guiamos en cada etapa, desde la idea inicial hasta la entrega final, asegurando transparencia y resultados excepcionales.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-accent-olive text-white rounded-full mx-auto mb-6 shadow-md"><i class="fas fa-comments text-3xl"></i></div>
+                    <h3 class="text-xl font-semibold text-primary-dark mb-2">1. Consulta y Briefing</h3>
+                    <p class="text-gray-dark text-sm">Escuchamos tus ideas, necesidades y presupuesto para entender tu visión a fondo.</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-accent-olive text-white rounded-full mx-auto mb-6 shadow-md"><i class="fas fa-drafting-compass text-3xl"></i></div>
+                    <h3 class="text-xl font-semibold text-primary-dark mb-2">2. Diseño y Renders 3D</h3>
+                    <p class="text-gray-dark text-sm">Creamos el concepto, seleccionamos materiales y te presentamos renders 3D fotorrealistas.</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-accent-olive text-white rounded-full mx-auto mb-6 shadow-md"><i class="fas fa-hard-hat text-3xl"></i></div>
+                    <h3 class="text-xl font-semibold text-primary-dark mb-2">3. Ejecución y Gestión</h3>
+                    <p class="text-gray-dark text-sm">Nos encargamos de la gestión de proveedores, supervisión de obra y coordinación de equipos.</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-accent-olive text-white rounded-full mx-auto mb-6 shadow-md"><i class="fas fa-key text-3xl"></i></div>
+                    <h3 class="text-xl font-semibold text-primary-dark mb-2">4. Montaje y Entrega</h3>
+                    <p class="text-gray-dark text-sm">Instalamos el mobiliario, cuidamos los detalles y te entregamos tu espacio soñado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portafolio" class="py-20 md:py-24 bg-gray-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-primary-dark mb-4">Nuestro Portafolio</h2>
+            <p class="text-lg text-center text-gray-dark mb-10 max-w-3xl mx-auto">
+                Proyectos que transforman espacios en experiencias memorables.
+            </p>
+
+            <div class="relative max-w-7xl mx-auto">
+                
+                <div id="portfolio-filters" class="flex justify-center space-x-4 mb-12">
+                    <button data-filter="all" class="filter-btn active-filter bg-primary-dark text-white px-6 py-2 rounded-md font-semibold hover:bg-dark-hover">Todo</button>
+                    <button data-filter="residencial" class="filter-btn border border-gray-medium text-primary-dark px-6 py-2 rounded-md font-semibold hover:bg-accent-olive hover:text-white hover:border-accent-olive">Residencial</button>
+                    <button data-filter="comercial" class="filter-btn border border-gray-medium text-primary-dark px-6 py-2 rounded-md font-semibold hover:bg-accent-olive hover:text-white hover:border-accent-olive">Comercial</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="comercial" 
+                        data-description-long="Diseño integral para oficinas de startup tecnológica. Se priorizó la luz natural, espacios abiertos de colaboración y zonas de descanso para fomentar la creatividad y el bienestar del equipo.">
+                        <img src="https://i.pinimg.com/736x/4a/c6/d5/4ac6d5bd5e62f3b9b676f29afb01bdf4.jpg" alt="Oficinas" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Oficinas Modernas</h3>
+                            <p class="text-gray-dark text-sm">Empresa de tecnología.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="residencial"
+                        data-description-long="Proyecto de remodelación de cocina en apartamento de lujo. Se utilizó una paleta de colores neutros, cuarzo blanco para el 'backsplash' e isla central, y mobiliario de madera de roble a medida.">
+                        <img src="https://i.pinimg.com/736x/1a/3b/38/1a3b38c684c2abb5e1f9cb69928e0718.jpg" alt="Cocina Minimalista" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Cocina Minimalista</h3>
+                            <p class="text-gray-dark text-sm">Apartamento de lujo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="residencial"
+                        data-description-long="Diseño de sala de estar estilo contemporáneo con énfasis en texturas naturales y una paleta de colores cálidos. Mobiliario seleccionado para maximizar el confort y la elegancia.">
+                        <img src="https://i.pinimg.com/736x/27/d2/e2/27d2e2f426e58d5ec8c772912c138f04.jpg" alt="Sala de Estar" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Sala de Estar</h3>
+                            <p class="text-gray-dark text-sm">Estilo contemporáneo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="comercial"
+                        data-description-long="Diseño interior para cafetería de especialidad en Barranco. Se buscó un ambiente industrial-chic con elementos de madera reciclada y una barra central como punto focal.">
+                        <img src="https://i.pinimg.com/1200x/5c/29/99/5c299944e63c1bd908f0036e837733ad.jpg" alt="Cafetería" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Cafetería Chic</h3>
+                            <p class="text-gray-dark text-sm">Proyecto comercial.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="residencial"
+                        data-description-long="Remodelación de baño principal utilizando mármol travertino, grifería de color negro mate y un diseño de iluminación indirecta para crear un ambiente tipo spa.">
+                        <img src="https://i.pinimg.com/736x/df/aa/f3/dfaaf3c22750e889d2fd54bf46a6c7b1.jpg" alt="Baño de Lujo" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Baño Principal</h3>
+                            <p class="text-gray-dark text-sm">Materiales premium.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition cursor-pointer portfolio-card" 
+                        data-category="residencial"
+                        data-description-long="Diseño de dormitorio principal con paleta de colores serena, textiles de alta calidad y un cabecero de cama diseñado a medida para un ambiente acogedor y relajante.">
+                        <img src="https://i.pinimg.com/736x/28/92/d0/2892d08d5f073c9b0e697be4194c2e38.jpg" alt="Dormitorio Principal" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-primary-dark">Dormitorio Principal</h3>
+                            <p class="text-gray-dark text-sm">Ambiente acogedor.</p>
+                        </div>
+                    </div>
+                    </div> </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="py-20 md:py-24 bg-gray-light fade-in-section">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary-dark mb-4">Lo que dicen nuestros clientes</h2>
+            <p class="text-lg text-gray-dark mb-16 max-w-2xl mx-auto">
+                La confianza y satisfacción de nuestros clientes es nuestra mejor carta de presentación.
+            </p>
+            <div class="relative overflow-hidden">
+                <div id="testimonial-track" class="flex transition-transform duration-500 ease-in-out">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full flex-shrink-0" style="min-width: 100%;">
+                        <div class="bg-white p-8 rounded-lg shadow-sm text-left">
+                            <div class="text-yellow-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="text-gray-dark italic mb-6">"El equipo de DECOR.IN transformó mi departamento. Captaron mi visión perfectamente y el resultado superó mis expectativas. ¡Totalmente recomendados!"</p>
+                            <div class="flex items-center">
+                                <div>
+                                    <h4 class="font-semibold text-primary-dark">Maria González</h4>
+                                    <p class="text-sm text-gray-dark">Proyecto Residencial, Miraflores</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm text-left">
+                            <div class="text-yellow-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="text-gray-dark italic mb-6">"Profesionalismo y creatividad. Rediseñaron nuestra oficina optimizando cada espacio. Nuestros colaboradores están más cómodos y productivos."</p>
+                            <div class="flex items-center">
+                                <div>
+                                    <h4 class="font-semibold text-primary-dark">Carlos Mendoza</h4>
+                                    <p class="text-sm text-gray-dark">Gerente de Operaciones, Oficinas San Isidro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full flex-shrink-0" style="min-width: 100%;">
+                        <div class="bg-white p-8 rounded-lg shadow-sm text-left">
+                            <div class="text-yellow-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="text-gray-dark italic mb-6">"El diseño de mi cocina quedó espectacular. La distribución es mucho más funcional y los acabados son de primera. Excelente trabajo de gestión de obra."</p>
+                            <div class="flex items-center">
+                                <div>
+                                    <h4 class="font-semibold text-primary-dark">Ana Lucía Torres</h4>
+                                    <p class="text-sm text-gray-dark">Proyecto Cocina, La Molina</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm text-left">
+                            <div class="text-yellow-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="text-gray-dark italic mb-6">"Contratamos a DECOR.IN para nuestro restaurante y el resultado fue clave para nuestro branding. El ambiente es acogedor y atrae a muchos clientes."</p>
+                            <div class="flex items-center">
+                                <div>
+                                    <h4 class="font-semibold text-primary-dark">Javier Fernández</h4>
+                                    <p class="text-sm text-gray-dark">Proyecto Comercial, Barranco</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-3 mt-8">
+                    <button id="testimonial-prev-btn" class="bg-primary-dark text-white w-10 h-10 rounded-full shadow-lg opacity-50 hover:opacity-100 disabled:opacity-30">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="testimonial-next-btn" class="bg-primary-dark text-white w-10 h-10 rounded-full shadow-lg opacity-50 hover:opacity-100 disabled:opacity-30">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-24 bg-primary-light fade-in-section">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+        <h2 class="text-4xl md:text-5xl font-bold text-center text-primary-dark mb-4">Preguntas Frecuentes</h2>
+        <p class="text-lg text-center text-gray-dark mb-16 max-w-3xl mx-auto">
+            Resolvemos tus dudas más comunes para que tengas total claridad sobre nuestro servicio.
+        </p>
+
+        <div class="space-y-4">
+
+            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-light overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center text-left p-6">
+                    <span class="text-lg font-semibold text-primary-dark">¿Cuál es el costo de una cotización o visita inicial?</span>
+                    <span class="faq-icon text-accent-olive text-xl transform transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <p class="text-gray-dark text-sm p-6 pt-0">
+                        ¡Nuestra primera consulta y cotización inicial son <strong class="text-primary-dark">completamente gratuitas!</strong> Agendamos una visita (virtual o presencial) para entender tu espacio, tus necesidades y tu presupuesto. Con eso, preparamos una propuesta de diseño y un estimado de costos sin compromiso.
+                    </p>
+                </div>
+            </div>  
+
+            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-light overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center text-left p-6">
+                    <span class="text-lg font-semibold text-primary-dark">¿Cuánto tiempo demora un proyecto de diseño completo?</span>
+                    <span class="faq-icon text-accent-olive text-xl transform transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <p class="text-gray-dark text-sm p-6 pt-0">
+                        El tiempo varía según la complejidad y escala. Un proyecto de diseño y decoración de un solo ambiente (ej. una sala) puede tomar de 4 a 6 semanas. Una remodelación integral de un apartamento o una oficina completa puede tomar de 3 a 6 meses, incluyendo la fase de diseño, permisos y ejecución de obra.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-light overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center text-left p-6">
+                    <span class="text-lg font-semibold text-primary-dark">¿Ustedes se encargan de la ejecución de la obra y compra de mobiliario?</span>
+                    <span class="faq-icon text-accent-olive text-xl transform transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <p class="text-gray-dark text-sm p-6 pt-0">
+                        ¡Sí! Ofrecemos un servicio "llave en mano". Como viste en nuestra sección "Nuestro Proceso", nos encargamos de todo: desde el diseño conceptual, la gestión de obra con nuestros equipos de confianza, hasta la compra, recepción e instalación del mobiliario y la decoración final.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-light overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center text-left p-6">
+                    <span class="text-lg font-semibold text-primary-dark">¿Qué pasa si no me gustan las ideas iniciales del diseño?</span>
+                    <span class="faq-icon text-accent-olive text-xl transform transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <p class="text-gray-dark text-sm p-6 pt-0">
+                        Nuestra prioridad es tu satisfacción. La fase de "Diseño Conceptual" (Paso 2) incluye rondas de revisión. Trabajamos contigo en base a los renders 3D y moodboards para ajustar los colores, materiales y distribución hasta que estés 100% conforme antes de empezar la ejecución.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+    <section class="bg-primary-dark fade-in-section">
+    <div class="max-w-7xl mx-auto text-center py-16 px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            ¿Listo para crear el espacio de tus sueños?
+        </h2>
+        <p class="text-lg text-gray-light mb-10 max-w-2xl mx-auto">
+            No esperes más. Contáctanos hoy para una cotización gratuita y descubre cómo podemos transformar tu entorno.
+        </p>
+        <a href="#contacto" 
+           class="bg-accent-olive text-white px-10 py-3 rounded-md text-lg font-semibold hover:bg-dark-hover shadow-lg">
+            Iniciar mi Proyecto
+        </a>
+    </div>
+    </section>
+
+    <section id="contacto" class="py-20 md:py-24 bg-primary-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-primary-dark mb-4">Inicia Tu Proyecto Hoy</h2>
+            <p class="text-lg text-center text-gray-dark mb-16 max-w-3xl mx-auto">
+                Completa este formulario y obtén una <strong class="text-primary-dark">cotización gratuita</strong> para tu proyecto. ¡Hagamos realidad tu visión!
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-10 rounded-lg shadow-md">
+                <div>
+                    <h3 class="text-2xl font-semibold text-primary-dark mb-6">Información de Contacto</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 text-gray-dark">
+                            <i class="fas fa-envelope text-2xl text-accent-olive"></i>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:contacto@decorin.com" class="hover:underline">contacto@decorin.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 text-gray-dark">
+                            <i class="fas fa-phone-alt text-2xl text-accent-olive"></i>
+                            <div>
+                                <p class="font-medium">Teléfono</p>
+                                <a href="tel:+51999888777" class="hover:underline">+51 999 888 777</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 text-gray-dark">
+                            <i class="fas fa-map-marker-alt text-2xl text-accent-olive"></i>
+                            <div>
+                                <p class="font-medium">Dirección</p>
+                                <p>Lima, Perú</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-primary-dark mt-10 mb-6">Horario de Atención</h3>
+                    <div class="space-y-3 text-gray-dark">
+                        <p><span class="font-medium">Lunes a Viernes:</span> 9:00 AM - 6:00 PM</p>
+                        <p><span class="font-medium">Sábados:</span> 10:00 AM - 2:00 PM</p>
+                        <p><span class="font-medium">Domingos:</span> Cerrado</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-primary-dark mb-6">Envíanos un Mensaje</h3>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-dark mb-2">Nombre *</label>
+                            <input type="text" id="nombre" name="nombre" class="w-full p-3 border border-gray-light rounded-md focus:ring-accent-olive focus:border-accent-olive" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-dark mb-2">Email *</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 border border-gray-light rounded-md focus:ring-accent-olive focus:border-accent-olive" required>
+                        </div>
+                        <div>
+                            <label for="telefono" class="block text-sm font-medium text-gray-dark mb-2">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" class="w-full p-3 border border-gray-light rounded-md focus:ring-accent-olive focus:border-accent-olive">
+                        </div>
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-dark mb-2">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" class="w-full p-3 border border-gray-light rounded-md focus:ring-accent-olive focus:border-accent-olive" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary-dark text-white px-6 py-3 rounded-md font-semibold hover:bg-dark-hover shadow-md">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary-dark text-white py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2025 DECOR.IN. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://api.whatsapp.com/send?phone=51941963144&text=Hola%20DECOR.IN,%20me%20gustaría%20cotizar%20un%20proyecto."
+       target="_blank"
+       class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg z-40 hover:bg-green-600">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <div id="lightbox" 
+         class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[999] hidden opacity-0 transition-opacity duration-300">
+        
+        <div id="lightbox-content" 
+             class="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col opacity-0 transform scale-95 transition-all duration-300">
+            
+            <div class="relative w-full h-[60vh]">
+                <img id="lightbox-img" src="" alt="Vista del proyecto" class="w-full h-full object-cover rounded-t-lg">
+            </div>
+            
+            <div class="p-6 overflow-y-auto">
+                <h3 id="lightbox-title" class="text-2xl font-bold text-primary-dark mb-2"></h3>
+                <p id="lightbox-desc" class="text-gray-dark"></p>
+            </div>
+        </div>
+        
+        <button id="lightbox-close-btn" class="absolute top-6 right-6 text-white text-4xl opacity-80 hover:opacity-100 z-[1000]">
+            &times;
+        </button>
+    </div>
+
+</body>
+</html>

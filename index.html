@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERGESAC | Servicios Generales & Diseño</title>
+    <meta name="description" content="Gestión de proyectos, construcción civil, drywall y diseño de interiores en Perú.">
+    <link rel="stylesheet" href="css/sergesac.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        
+        <a href="#" class="brand-logo" style="display: block; height: 70px; width: 250px; overflow: hidden; position: relative;">
+            <img src="images/logo-sergesacv2.png" alt="Logo Sergesac" 
+                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; max-width: none; height: auto;">
+        </a>
+
+        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
+            <i class="fab fa-whatsapp"></i> Contacto Directo
+        </a>
+    </header>
+
+    <div class="hero-container">
+        
+        <div class="hero-construction">
+            <small style="color: var(--accent-gold); font-weight:bold; letter-spacing: 2px; margin-bottom: 10px;">DIVISIÓN DE INFRAESTRUCTURA</small>
+            <h1>Gestión & Construcción</h1>
+            <p class="lead">Especialistas en Drywall, Obras Civiles y Mantenimiento Corporativo. Tercerización eficiente con garantía técnica.</p>
+            
+            <button onclick="openModal()" class="btn btn-primary">Cotizar Proyecto Civil</button>
+            
+            <div style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-check-circle"></i> Factura y Garantía <br>
+                <i class="fas fa-check-circle"></i> Supervisión Técnica
+            </div>
+        </div>
+
+        <div class="hero-design">
+            <small style="color: #666; font-weight:bold; letter-spacing: 2px; margin-bottom: 10px;">DIVISIÓN DE ARQUITECTURA INTERIOR</small>
+            <h2>Diseño que inspira</h2>
+            <p class="lead">Transformamos espacios residenciales y comerciales. Renders 3D y acabados de lujo.</p>
+            
+            <a href="decorin.html" class="btn btn-outline">Ir a Decor.in &rarr;</a>
+        </div>
+
+    </div>
+
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" class="close-modal">&times;</span>
+            <h3 style="color: var(--primary-blue);">Cotizar Obra / Drywall</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Déjanos los datos de tu proyecto y te contactaremos hoy mismo.</p>
+            
+            <form id="contactForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Nombre / Empresa:</label>
+                    <input type="text" name="name" required placeholder="Ej: Juan Pérez / Mi Empresa S.A.C.">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono / WhatsApp:</label>
+                    <input type="tel" name="phone" required placeholder="Ej: 999 999 999">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Servicio:</label>
+                    <select name="service">
+                        <option value="Drywall">Instalación de Drywall</option>
+                        <option value="Obra Civil">Obra Civil / Remodelación</option>
+                        <option value="Mantenimiento">Mantenimiento General</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Detalles del Proyecto:</label>
+                    <textarea name="message" rows="3" required placeholder="Metraje aproximado, ubicación, etc."></textarea>
+                </div>
+                
+                <input type="hidden" name="source" value="WEB-SERGESAC-OBRAS">
+
+                <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Funciones del Modal
+        function openModal() {
+            document.getElementById('quoteModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('quoteModal').style.display = 'none';
+        }
+
+        // Cerrar modal si se hace clic fuera
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('quoteModal')) {
+                closeModal();
+            }
+        }
+
+        // Función para enviar el formulario (Conectando con tu API existente)
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Enviando...";
+            btn.disabled = true;
+
+            // Recolectamos los datos
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // NOTA: Aquí ajustamos la URL a donde tienes tu api. 
+            // Si estás en local, probablemente sea '/api/send-email'.
+            fetch('/api/send-email', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("¡Mensaje enviado! Nos pondremos en contacto contigo.");
+                    closeModal();
+                    e.target.reset();
+                } else {
+                    alert("Hubo un error al enviar. Por favor intenta al WhatsApp.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Error de conexión. Intenta nuevamente.");
+            })
+            .finally(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+        }
+    </script>
+
+</body>
+</html>

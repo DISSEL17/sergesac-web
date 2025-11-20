@@ -1,0 +1,243 @@
+/* ARCHIVO: css/sergesac.css */
+
+:root {
+    /* Paleta de Colores Corporativa */
+    --primary-blue: #002B5B;  /* Azul Marino Profundo */
+    --accent-gold: #C5A059;   /* Dorado/Tierra para construcción */
+    --text-dark: #1a1a1a;     /* Negro suave para textos */
+    --pure-white: #ffffff;
+    --bg-gray: #f4f4f4;
+}
+
+/* --- ESTILOS GENERALES --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--pure-white);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita scroll horizontal accidental */
+}
+
+/* --- HEADER (ENCABEZADO) --- */
+header {
+    background: var(--pure-white);
+    padding: 0 5%; /* Padding horizontal */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Sombra más suave */
+    position: fixed;
+    width: 100%;
+    height: 85px; /* Altura fija elegante */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Corrección del Logo para que no se vea borroso */
+.brand-logo {
+    display: block;
+    height: 85px; /* Ocupa toda la altura del header */
+    width: 250px; /* Ancho fijo */
+    position: relative;
+    overflow: hidden; /* Recorta lo que sobre */
+}
+
+.brand-logo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Se ajusta al ancho */
+    height: auto;
+    /* Truco: Recortamos visualmente el espacio blanco ajustando el 'padding' de la imagen */
+    object-fit: cover; 
+    object-position: center;
+}
+
+/* Estilo del botón de WhatsApp en el header */
+.nav-contact {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.nav-contact:hover {
+    background-color: #004080; /* Un azul un poco más claro al pasar el mouse */
+}
+
+/* --- SECCIÓN PRINCIPAL (PANTALLA DIVIDIDA) --- */
+.hero-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    padding-top: 90px; /* Espacio para que el header no tape el contenido */
+}
+
+/* LADO IZQUIERDO: CONSTRUCCIÓN */
+.hero-construction {
+    flex: 1;
+    /* Gradiente más sofisticado para que el texto resalte */
+    background: linear-gradient(135deg, rgba(0, 43, 91, 0.9) 0%, rgba(0, 43, 91, 0.7) 100%), url('../images/construccion-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem; /* Más aire alrededor */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra al texto para lectura */
+}
+
+/* LADO DERECHO: DISEÑO */
+.hero-design {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%), url('../images/diseno-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem;
+    border-left: 1px solid rgba(0,0,0,0.1); /* Línea divisoria sutil */
+}
+
+/* Tipografía del Hero */
+h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 300; }
+p.lead { font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; }
+small { display: block; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 10px; font-weight: bold; }
+
+/* --- BOTONES --- */
+.btn {
+    display: inline-block;
+    padding: 14px 30px; /* Menos anchos */
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    text-align: center;
+    min-width: 200px; /* Tamaño mínimo estándar */
+}
+
+/* Botón Dorado (Construcción) */
+.btn-primary {
+    background-color: var(--accent-gold);
+    color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+}
+.btn-primary:hover {
+    background-color: #e0bd74;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Botón Bordeado (Diseño) */
+.btn-outline {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    background: transparent;
+}
+.btn-outline:hover {
+    background-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* --- MODAL DE COTIZACIÓN (POPUP) --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Fondo oscuro semitransparente */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Efecto borroso elegante en el fondo */
+}
+
+.modal-content {
+    background: white;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Botón de cerrar (X) */
+.close-modal {
+    position: absolute; right: 20px; top: 15px;
+    font-size: 2rem; cursor: pointer; color: #999;
+    transition: color 0.3s;
+}
+.close-modal:hover { color: var(--primary-blue); }
+
+/* Estilos del Formulario */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; color: #555; }
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px;
+    border: 1px solid #ddd; border-radius: 4px;
+    font-family: inherit;
+    background: #f9f9f9;
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary-blue); background: white;
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+.btn-submit:hover { background: #001f42; }
+
+/* Animación suave para el modal */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RESPONSIVE (MÓVILES) --- */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column; /* Uno debajo del otro */
+        height: auto;
+    }
+    .hero-construction, .hero-design {
+        padding: 4rem 1.5rem;
+        min-height: 60vh; /* Altura mínima para que se vea bien en cel */
+        text-align: center; /* Centrar texto en móvil */
+    }
+    .hero-design { border-left: none; border-top: 5px solid var(--primary-blue); }
+    
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    
+    /* Ajuste del logo en móvil si fuera necesario, aunque el inline del HTML manda */
+    header { padding: 10px 15px; }
+}
