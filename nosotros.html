@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERGESAC | Quiénes Somos</title>
+    <link rel="stylesheet" href="css/sergesac.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 43, 91, 0.9), rgba(0, 43, 91, 0.8)), url('images/construccion-bg.jpg');
+            background-size: cover; background-position: center;
+            height: 40vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding-top: 85px;
+        }
+        .content-section { padding: 80px 5%; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 20px; }
+        p { margin-bottom: 20px; color: #555; font-size: 1.1rem; }
+        
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .value-card { background: #f9f9f9; padding: 40px 30px; text-align: center; border-radius: 8px; transition: 0.3s; }
+        .value-card:hover { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        .value-card i { font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px; }
+
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
+        <a href="index.html" class="brand-logo" style="display: block; height: 85px; width: 250px; position: relative; overflow: hidden;">
+            <img src="images/logo-sergesacv2.png" alt="SERGESAC" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
+        </a>
+        <nav class="main-nav" style="display: flex; gap: 30px;">
+            <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #C5A059; font-weight: 700; border-bottom: 2px solid #C5A059;">NOSOTROS</a>
+            <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
+        </nav>
+        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
+            <i class="fab fa-whatsapp"></i> Contacto
+        </a>
+    </header>
+
+    <section class="page-header">
+        <div>
+            <h1 style="font-size: 3rem; text-transform: uppercase; letter-spacing: 2px;">Nuestra Empresa</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">RUC: 20604346551</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="grid-2">
+            <div>
+                <small style="color: #C5A059; font-weight: bold;">SOBRE SERGESAC</small>
+                <h2>Más que una constructora, <br>somos sus socios.</h2>
+                <p>Nacimos con la visión de unificar la ingeniería civil con el diseño arquitectónico, ofreciendo una solución "llave en mano".</p>
+                <p>Contamos con un equipo multidisciplinario listo para atender requerimientos corporativos y residenciales con los más altos estándares de seguridad.</p>
+            </div>
+            <div>
+                <div style="background: #f4f4f4; padding: 30px; border-left: 5px solid #002B5B; margin-bottom: 20px;">
+                    <h3 style="color: #002B5B;">Misión</h3>
+                    <p style="margin:0; font-size: 0.9rem;">Brindar soluciones integrales garantizando seguridad y calidad.</p>
+                </div>
+                <div style="background: #f4f4f4; padding: 30px; border-left: 5px solid #C5A059;">
+                    <h3 style="color: #002B5B;">Visión</h3>
+                    <p style="margin:0; font-size: 0.9rem;">Ser líderes en gestión de proyectos y acabados en Lima.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card"><i class="fas fa-shield-alt"></i><h3>Seguridad</h3><p>Cumplimiento estricto de normas SSOMA.</p></div>
+            <div class="value-card"><i class="fas fa-clock"></i><h3>Puntualidad</h3><p>Respetamos los cronogramas de obra.</p></div>
+            <div class="value-card"><i class="fas fa-drafting-compass"></i><h3>Diseño</h3><p>Estética y funcionalidad unidas.</p></div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem;">
+        &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>

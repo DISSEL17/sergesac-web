@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERGESAC | Divisiones</title>
+    <link rel="stylesheet" href="css/sergesac.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
+        <a href="index.html" class="brand-logo" style="display: block; height: 85px; width: 250px; position: relative; overflow: hidden;">
+            <img src="images/logo-sergesacv2.png" alt="SERGESAC" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
+        </a>
+        <nav class="main-nav" style="display: flex; gap: 30px;">
+            <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
+            <a href="catalogo.html" style="text-decoration: none; color: #C5A059; font-weight: 700; border-bottom: 2px solid #C5A059;">CATÁLOGOS</a>
+        </nav>
+        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
+            <i class="fab fa-whatsapp"></i> Contacto
+        </a>
+    </header>
+
+    <div class="hero-container">
+        <div class="hero-construction">
+            <h3 style="color: #C5A059; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-hard-hat"></i> Módulo de Ingeniería
+            </h3>
+            <h1>Gestión & Construcción</h1>
+            <p class="lead">Drywall, Obras Civiles y Mantenimiento.</p>
+            <button onclick="openQuoteModal()" class="btn btn-primary">Cotizar Obra</button>
+        </div>
+
+        <div class="hero-design">
+            <h3 style="color: #555; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-pencil-ruler"></i> Módulo de Diseño
+            </h3>
+            <h1>Decor.in</h1>
+            <p class="lead">Interiorismo, Renders 3D y Acabados.</p>
+            <a href="decorin.html" class="btn btn-outline">Ingresar al Sitio &rarr;</a>
+        </div>
+    </div>
+
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeQuoteModal()" class="close-modal">&times;</span>
+            <h3 style="color: #002B5B;">Cotización Corporativa</h3>
+            <p style="font-size:0.9rem; color:#666; margin-bottom: 20px;">Solicitud para el área de Ingeniería.</p>
+            <form id="contactForm">
+                <div class="form-group"><label>Empresa:</label><input type="text" name="name" required></div>
+                <div class="form-group"><label>Teléfono:</label><input type="tel" name="phone" required></div>
+                <div class="form-group"><label>Servicio:</label>
+                    <select name="service"><option>Drywall</option><option>Obra Civil</option><option>Otros</option></select>
+                </div>
+                <div class="form-group"><label>Detalles:</label><textarea name="message" rows="3" required></textarea></div>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem; position: fixed; bottom: 0; width: 100%;">
+        &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        function openQuoteModal() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuoteModal() { document.getElementById('quoteModal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target.classList.contains('modal')) closeQuoteModal(); }
+    </script>
+</body>
+</html>
