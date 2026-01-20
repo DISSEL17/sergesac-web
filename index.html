@@ -48,7 +48,7 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <nav id="mainMenu" class="main-nav" style="gap: 30px;">
+        <nav id="mainMenu" class="main-nav">
             <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
             <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
             <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
@@ -70,11 +70,18 @@
     </div>
 
     <script>
-    // Script para el menú móvil
+    // 1. Abrir/Cerrar menú con el botón
     function toggleMenu() {
         const menu = document.getElementById('mainMenu');
         menu.classList.toggle('active');
     }
+
+    // 2. CERRAR AUTOMÁTICAMENTE al dar clic en un enlace
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('mainMenu').classList.remove('active');
+        });
+    });
     </script>
 
     <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem; position: fixed; bottom: 0; width: 100%;">
