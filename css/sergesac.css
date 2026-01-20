@@ -129,3 +129,68 @@ p.lead { font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; }
     .hide-mobile { display: none; }
     header { justify-content: space-between; padding: 0 15px; }
 }
+
+/* --- RESPONSIVE MENU (HAMBURGUESA) --- */
+
+/* Por defecto, el botón de menú está oculto en PC */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* REGLAS SOLO PARA MÓVIL (Menores a 768px) */
+@media (max-width: 768px) {
+    
+    /* Mostrar el botón hamburguesa */
+    .menu-toggle {
+        display: block; 
+    }
+
+    /* El menú normal se oculta */
+    .main-nav {
+        display: none; /* Se oculta por defecto */
+        position: absolute;
+        top: 85px; /* Justo debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column; /* Lista vertical */
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        border-top: 1px solid #eee;
+    }
+
+    /* Clase mágica para mostrar el menú cuando se active */
+    .main-nav.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* Estilo de los enlaces en móvil */
+    .main-nav a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 1.1rem;
+    }
+
+    /* Ocultar texto del botón de contacto en móvil para ahorrar espacio */
+    .nav-contact span {
+        display: none;
+    }
+    .nav-contact {
+        padding: 10px; /* Hacer el botón más cuadrado */
+    }
+}
+
+/* Animación suave */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
