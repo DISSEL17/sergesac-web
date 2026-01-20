@@ -28,24 +28,35 @@
 </head>
 <body>
 
+<body>
+
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
+        
         <a href="index.html" class="brand-logo" style="display: block; height: 85px; width: 250px; position: relative; overflow: hidden;">
-            <img src="images/logo-sergesacv2.png" alt="SERGESAC" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
+            <img src="images/logo-sergesacv2.png" alt="SERGESAC" 
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
         </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <nav id="mainMenu" class="main-nav">
             <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
-            <a href="nosotros.html" style="text-decoration: none; color: #C5A059; font-weight: 700; border-bottom: 2px solid #C5A059;">NOSOTROS</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
             <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
         </nav>
+
         <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
-            <i class="fab fa-whatsapp"></i> Contacto
+            <i class="fab fa-whatsapp"></i> <span>Contacto</span>
         </a>
+
     </header>
 
-    <section class="page-header">
+    <section class="page-header" style="margin-top: 85px; background: linear-gradient(rgba(0, 43, 91, 0.9), rgba(0, 43, 91, 0.8)), url('images/construccion-bg.jpg'); background-size: cover; height: 300px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
         <div>
-            <h1 style="font-size: 3rem; text-transform: uppercase; letter-spacing: 2px;">Nuestra Empresa</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9;">RUC: 20604346551</p>
+            <h1 style="font-size: 2.5rem; text-transform: uppercase;">Nuestra Empresa</h1>
+            <p>Solidez y Garantía en cada proyecto</p>
         </div>
     </section>
 
@@ -75,6 +86,22 @@
             <div class="value-card"><i class="fas fa-drafting-compass"></i><h3>Diseño</h3><p>Estética y funcionalidad unidas.</p></div>
         </div>
     </section>
+
+        <script>
+    // Función para abrir/cerrar el menú
+    function toggleMenu() {
+        const menu = document.getElementById('mainMenu');
+        menu.classList.toggle('active');
+    }
+
+    // Cerrar el menú automáticamente al hacer clic en un enlace (para móviles)
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.remove('active');
+        });
+    });
+    </script>
 
     <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem;">
         &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
