@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="css/sergesac.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos exclusivos para el Home */
+        /* Estilos exclusivos para el Home - Paleta Midnight Executive */
+        :root {
+            --midnight: #0F172A;
+            --gold: #C5A059;
+            --slate: #334155;
+            --white-smoke: #F8FAFC;
+        }
+
         .home-hero {
             height: 100vh;
-            /* Asegúrate de tener esta imagen o se verá azul sólido */
-            background: linear-gradient(rgba(0, 43, 91, 0.8), rgba(0, 43, 91, 0.8)), url('images/construccion-bg.jpg');
+            /* Degradado más moderno y profundo */
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.8)), url('images/construccion-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -22,20 +29,53 @@
             color: white;
             padding: 0 20px;
         }
-        .home-content h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: 2px; }
-        .home-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px auto; opacity: 0.9; }
-        
-        /* Botón gigante */
-        .btn-hero {
-            background: var(--accent-gold); color: #1a1a1a;
-            padding: 18px 40px; font-weight: bold; text-decoration: none;
-            border-radius: 5px; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s;
+
+        .home-content h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            letter-spacing: 4px; 
+            font-weight: 700;
+            color: white;
         }
-        .btn-hero:hover { background: white; color: var(--primary-blue); }
+
+        .home-content p { 
+            font-size: 1.25rem; 
+            max-width: 750px; 
+            margin: 0 auto 40px auto; 
+            color: var(--white-smoke);
+            line-height: 1.6;
+        }
+        
+        /* Botón estilo Executive */
+        .btn-hero {
+            background: var(--gold); 
+            color: white;
+            padding: 18px 45px; 
+            font-weight: bold; 
+            text-decoration: none;
+            border-radius: 4px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-hero:hover { 
+            background: white; 
+            color: var(--midnight); 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        footer {
+            background: #0a0f1d !important; /* Más oscuro para el fondo */
+            color: #64748b !important;
+            border-top: 1px solid #1e293b;
+        }
     </style>
 </head>
-<body>
+<body style="background-color: #F8FAFC;">
 
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
         
@@ -44,17 +84,17 @@
                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
         </a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">
+        <button class="menu-toggle" onclick="toggleMenu()" style="color: #0F172A;">
             <i class="fas fa-bars"></i>
         </button>
 
         <nav id="mainMenu" class="main-nav">
-            <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
-            <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
-            <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
+            <a href="index.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">INICIO</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">NOSOTROS</a>
+            <a href="catalogo.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">CATÁLOGOS</a>
         </nav>
 
-        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
+        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #0F172A; color: white; padding: 10px 25px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; transition: 0.3s;">
             <i class="fab fa-whatsapp"></i> <span>Contacto</span>
         </a>
 
@@ -62,21 +102,19 @@
 
     <div class="home-hero">
         <div class="home-content">
-            <h1>SOLIDEZ Y GARANTÍA</h1>
-            <p><strong>Servicios Generales J & B Asociados S.A.C.</strong></p>
-            <p>Gestionamos proyectos integrales uniendo la ingeniería civil con el diseño arquitectónico.</p>
+            <h1 style="text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">SOLIDEZ Y GARANTÍA</h1>
+            <p style="color: #C5A059; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px;">Servicios Generales J & B Asociados S.A.C.</p>
+            <p>Gestionamos proyectos integrales uniendo la ingeniería civil con el diseño arquitectónico de vanguardia.</p>
             <a href="catalogo.html" class="btn-hero">Ver Nuestros Servicios</a>
         </div>
     </div>
 
     <script>
-    // 1. Abrir/Cerrar menú con el botón
     function toggleMenu() {
         const menu = document.getElementById('mainMenu');
         menu.classList.toggle('active');
     }
 
-    // 2. CERRAR AUTOMÁTICAMENTE al dar clic en un enlace
     document.querySelectorAll('.main-nav a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('mainMenu').classList.remove('active');
@@ -84,8 +122,8 @@
     });
     </script>
 
-    <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem; position: fixed; bottom: 0; width: 100%;">
-        &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
+    <footer style="background: #0a0f1d; color: #64748b; text-align: center; padding: 25px; font-size: 0.85rem; width: 100%; border-top: 1px solid #1e293b;">
+        &copy; 2025 <strong style="color: #C5A059;">Grupo SERGESAC</strong>. Solidez y Garantía en cada proyecto.
     </footer>
 
 </body>

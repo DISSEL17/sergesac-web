@@ -1,48 +1,53 @@
 /* css/sergesac.css */
 
 :root {
-    --primary-blue: #002B5B;
-    --accent-gold: #C5A059;
-    --text-dark: #1a1a1a;
-    --pure-white: #ffffff;
+    /* Paleta Midnight Executive Unificada */
+    --primary-dark: #0F172A;    /* Azul Medianoche */
+    --accent-gold: #C5A059;     /* Oro Champagne */
+    --text-body: #334155;       /* Gris Slate */
+    --bg-soft: #F8FAFC;         /* Blanco Humo */
+    --white: #ffffff;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+    background-color: var(--bg-soft);
+    color: var(--text-body);
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text-dark);
-    background-color: var(--pure-white);
-    line-height: 1.6;
-    overflow-x: hidden;
+    margin: 0; /* Asegura que no haya márgenes extra */
 }
 
-/* --- HEADER (ENCABEZADO) --- */
+/* --- HEADER --- */
 header {
-    background: var(--pure-white);
-    padding: 0 5%;
+    background-color: var(--white) !important;
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
-    justify-content: space-between; /* Separa Logo - Menú - Contacto */
+    justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 0 5%;
+    height: 85px;
     position: fixed;
     width: 100%;
-    height: 85px;
     top: 0;
     z-index: 1000;
+    box-sizing: border-box; /* Evita que el padding ensanche el header */
 }
 
 /* LOGO */
 .brand-logo {
-    display: block; height: 85px; width: 200px; /* Un poco más pequeño para dar espacio al menú */
-    position: relative; overflow: hidden; flex-shrink: 0;
+    display: block; 
+    height: 60px; /* Ajustado para que quepa bien */
+    width: 200px; 
+    position: relative; 
+    overflow: hidden; 
+    flex-shrink: 0;
 }
 .brand-logo img {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 100%; height: auto; object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mejor que cover para logos */
 }
 
-/* --- NUEVO MENÚ DE NAVEGACIÓN --- */
+/* --- NAVEGACIÓN --- */
 .main-nav {
     display: flex;
     gap: 30px;
@@ -50,147 +55,101 @@ header {
 
 .main-nav a {
     text-decoration: none;
-    color: var(--primary-blue);
+    color: var(--primary-dark); /* Corregido: antes decía primary-blue */
     font-weight: 600;
     font-size: 0.95rem;
     text-transform: uppercase;
     transition: color 0.3s;
-    position: relative;
 }
 
-.main-nav a:hover { color: var(--accent-gold); }
-
-/* Efecto para el link activo */
-.main-nav a.active { color: var(--accent-gold); }
-
-/* Estilo especial para el link de Decorin */
-.main-nav a.highlight-link {
-    border-bottom: 2px solid var(--accent-gold);
-    padding-bottom: 2px;
+.main-nav a:hover, .main-nav a.active { 
+    color: var(--accent-gold); 
 }
 
-/* --- BOTÓN CONTACTO --- */
-.nav-contact {
-    background-color: var(--primary-blue); color: white; 
-    padding: 10px 25px; text-decoration: none; font-weight: bold; 
-    border-radius: 4px; font-size: 0.9rem;
-    flex-shrink: 0;
+/* --- BOTONES Y CONTACTO --- */
+.nav-contact, .btn-submit, .btn-primary {
+    background-color: var(--primary-dark) !important;
+    color: var(--white) !important;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
-.nav-contact:hover { background-color: #004080; }
 
-/* --- PANTALLA DIVIDIDA (HERO) --- */
-.hero-container { display: flex; height: 100vh; padding-top: 85px; }
+.nav-contact:hover, .btn-submit:hover, .btn-primary:hover {
+    background-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+/* --- HERO PANTALLA DIVIDIDA --- */
+.hero-container { 
+    display: flex; 
+    height: 100vh; 
+    padding-top: 85px; 
+    box-sizing: border-box;
+}
 
 .hero-construction {
     flex: 1;
-    background: linear-gradient(135deg, rgba(0, 43, 91, 0.85) 0%, rgba(0, 43, 91, 0.7) 100%), url('../images/construccion-bg.jpg');
-    background-size: cover; background-position: center; color: white;
-    display: flex; flex-direction: column; justify-content: center; padding: 5rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 100%), url('../images/construccion-bg.jpg');
+    background-size: cover; 
+    background-position: center; 
+    color: white;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 5%;
 }
 
 .hero-design {
     flex: 1;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%), url('../images/diseno-bg.jpg');
-    background-size: cover; background-position: center; color: var(--text-dark);
-    display: flex; flex-direction: column; justify-content: center; padding: 5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%), url('../images/diseno-bg.jpg');
+    background-size: cover; 
+    background-position: center; 
+    color: var(--primary-dark);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 5%;
     border-left: 1px solid rgba(0,0,0,0.1);
 }
 
-h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-p.lead { font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; }
-
-/* --- BOTONES --- */
-.btn {
-    display: inline-block; padding: 14px 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer; font-size: 0.85rem; border-radius: 4px; text-align: center; min-width: 200px; text-decoration: none;
-}
-.btn-primary { background-color: var(--accent-gold); color: #1a1a1a; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.btn-primary:hover { background-color: #e0bd74; transform: translateY(-2px); }
-.btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; }
-.btn-outline:hover { background-color: var(--primary-blue); color: white; transform: translateY(-2px); }
-
-/* --- MODAL --- */
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-.modal-content { background: white; padding: 2.5rem; width: 90%; max-width: 500px; border-radius: 8px; position: relative; animation: fadeIn 0.3s ease-out; }
-.close-modal { position: absolute; right: 20px; top: 15px; font-size: 2rem; cursor: pointer; color: #999; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; background: #f9f9f9; }
-.btn-submit { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 15px; font-weight: bold; cursor: pointer; border-radius: 4px; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
 /* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .hero-container { flex-direction: column; height: auto; }
-    .hero-construction, .hero-design { padding: 4rem 1.5rem; min-height: 60vh; text-align: center; align-items: center; }
-    
-    /* Ocultar el menú de texto en celular y dejar solo contacto por espacio */
-    .main-nav { display: none; } 
-    .hide-mobile { display: none; }
-    header { justify-content: space-between; padding: 0 15px; }
-}
-
-/* --- RESPONSIVE MENU (HAMBURGUESA) --- */
-
-/* Por defecto, el botón de menú está oculto en PC */
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     font-size: 1.8rem;
-    color: var(--primary-blue);
+    color: var(--primary-dark);
     cursor: pointer;
-    padding: 5px;
 }
 
-/* REGLAS SOLO PARA MÓVIL (Menores a 768px) */
 @media (max-width: 768px) {
-    
-    /* Mostrar el botón hamburguesa */
-    .menu-toggle {
-        display: block; 
-    }
+    .menu-toggle { display: block; }
 
-    /* El menú normal se oculta */
     .main-nav {
-        display: none; /* Se oculta por defecto */
+        display: none; 
         position: absolute;
-        top: 85px; /* Justo debajo del header */
+        top: 85px;
         left: 0;
         width: 100%;
         background-color: white;
-        flex-direction: column; /* Lista vertical */
+        flex-direction: column;
         padding: 20px 0;
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        text-align: center;
-        border-top: 1px solid #eee;
     }
 
-    /* Clase mágica para mostrar el menú cuando se active */
-    .main-nav.active {
-        display: flex;
-        animation: slideDown 0.3s ease-out;
-    }
+    .main-nav.active { display: flex; }
 
-    /* Estilo de los enlaces en móvil */
-    .main-nav a {
-        display: block;
-        padding: 15px;
-        border-bottom: 1px solid #f0f0f0;
-        font-size: 1.1rem;
+    .hero-container { flex-direction: column; height: auto; }
+    
+    .hero-construction, .hero-design { 
+        padding: 60px 20px; 
+        min-height: 50vh; 
     }
-
-    /* Ocultar texto del botón de contacto en móvil para ahorrar espacio */
-    .nav-contact span {
-        display: none;
-    }
-    .nav-contact {
-        padding: 10px; /* Hacer el botón más cuadrado */
-    }
-}
-
-/* Animación suave */
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
