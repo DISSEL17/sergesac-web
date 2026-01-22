@@ -3,100 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERGESAC | Divisiones</title>
+    <title>SERGESAC | Catálogo de Divisiones</title>
     <link rel="stylesheet" href="css/sergesac.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --midnight: #0F172A;
+            --gold: #C5A059;
+            --slate: #334155;
+            --white: #ffffff;
+        }
+
+        /* RESET BÁSICO */
+        body, html { margin: 0; padding: 0; width: 100%; overflow-x: hidden; font-family: 'Segoe UI', sans-serif; }
+
+        /* =========================================
+           1. HEADER ESTRUCTURAL (Idéntico a Index/Nosotros)
+           ========================================= */
+        header {
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000; box-sizing: border-box;
+        }
+
+        /* LOGO */
+        .brand-logo {
+            display: block; height: 85px; width: 250px; position: relative; overflow: hidden; flex-shrink: 0;
+        }
+        .brand-logo img {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;
+        }
+
+        /* NAV (Centro) */
+        .main-nav {
+            position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 30px;
+        }
+
+        /* CONTENEDOR DERECHO (WhatsApp + Hamburguesa) */
+        .header-right { display: flex; align-items: center; gap: 15px; }
+
+        /* Botón WhatsApp */
+        .nav-contact {
+            background-color: var(--midnight); color: white; padding: 10px 25px; 
+            text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; 
+            display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: 0.3s;
+        }
+
+        /* Menú Hamburguesa (Oculto en PC) */
+        .menu-toggle { display: none; color: var(--midnight); background: none; border: none; font-size: 1.8rem; cursor: pointer; padding: 0; }
+
+        /* RESPONSIVE HEADER */
+        @media (max-width: 900px) {
+            header { padding: 0 20px; }
+            .brand-logo { width: 160px; }
+            .main-nav { display: none; }
+            .menu-toggle { display: block; } /* Forzar visibilidad */
+            
+            .nav-contact span { display: none; }
+            .nav-contact { padding: 8px 12px; }
+            .nav-contact i { font-size: 1.2rem; }
+            
+            .main-nav.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 85px; left: 0; width: 100%; background: white;
+                padding: 20px 0; transform: none; box-shadow: 0 10px 10px rgba(0,0,0,0.1); text-align: center;
+            }
+        }
+
+        /* =========================================
+           2. ESTILOS DEL CATÁLOGO
+           ========================================= */
+        .hero-container { 
+            display: flex; margin-top: 85px; height: calc(100vh - 85px); width: 100%;
+            padding-top: 0 !important; 
+        }
+
+        /* Lado Ingeniería */
+        .hero-construction {
+            flex: 1;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('images/construccion-bg.jpg');
+            background-size: cover; background-position: center;
+            color: white; display: flex; flex-direction: column; justify-content: center; padding: 5%;
+        }
+
+        /* Lado Diseño */
+        .hero-design {
+            flex: 1;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(248, 250, 252, 0.6)), url('images/diseno-bg.jpg');
+            background-size: cover; background-position: center;
+            color: var(--midnight); display: flex; flex-direction: column; justify-content: center; padding: 5%;
+            border-left: 1px solid rgba(0,0,0,0.1); position: relative;
+        }
+        
+        .hero-design::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 20px;
+            background: linear-gradient(to right, rgba(0,0,0,0.05), transparent);
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; line-height: 1.1; font-weight: 800; }
+        .subtitle { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 15px; display: block; }
+        .lead { font-size: 1.2rem; margin-bottom: 30px; max-width: 480px; line-height: 1.5; font-weight: 500; }
+
+        /* Botones */
+        .btn-main {
+            padding: 16px 40px; border-radius: 4px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.3s; cursor: pointer; border: none; text-decoration: none;
+            display: inline-block; font-size: 0.9rem;
+        }
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-gold:hover { background: white; color: var(--midnight); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        
+        .btn-dark { background: var(--midnight); color: white; }
+        .btn-dark:hover { background: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* MODAL */
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); 
+            justify-content: center; align-items: center; backdrop-filter: blur(8px); 
+        }
+        .modal-content { background: white; padding: 40px; width: 90%; max-width: 500px; border-radius: 8px; position: relative; }
+        .form-group { margin-bottom: 15px; width: 100%; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--midnight); }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; 
+        }
+
+        footer { background: #0a0f1d; color: #64748b; text-align: center; padding: 25px; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; height: auto; margin-top: 85px; }
+            .hero-construction, .hero-design { padding: 80px 30px; min-height: 60vh; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
-        
-        <a href="index.html" class="brand-logo" style="display: block; height: 85px; width: 250px; position: relative; overflow: hidden;">
-            <img src="images/logo-sergesacv2.png" alt="SERGESAC" 
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
+    <header>
+        <a href="index.html" class="brand-logo">
+            <img src="images/logo-sergesacv2.png" alt="SERGESAC">
         </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
 
         <nav id="mainMenu" class="main-nav">
-            <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
-            <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
-            <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
+            <a href="index.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">INICIO</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">NOSOTROS</a>
+            <a href="catalogo.html" style="text-decoration: none; color: #C5A059; font-weight: 700;">CATÁLOGOS</a>
         </nav>
 
-        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
-            <i class="fab fa-whatsapp"></i> <span>Contacto</span>
-        </a>
-
+        <div class="header-right">
+            <a href="https://wa.me/51999999999" target="_blank" class="nav-contact">
+                <i class="fab fa-whatsapp"></i> <span>WHATSAPP</span>
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </header>
 
-    <section style="margin-top: 85px; padding: 40px 5%;">
-    <h1 style="text-align: center; color: #002B5B;">Nuestros Catálogos</h1>
-    </section> 
-
-    <div class="hero-container" style="margin-top: 85px; height: calc(100vh - 85px); display: flex;">
+    <div class="hero-container">
         <div class="hero-construction">
-            <h3 style="color: #C5A059; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-hard-hat"></i> Módulo de Ingeniería
-            </h3>
-            <h1>Gestión & Construcción</h1>
-            <p class="lead">Drywall, Obras Civiles y Mantenimiento.</p>
-            <button onclick="openQuoteModal()" class="btn btn-primary">Cotizar Obra</button>
+            <span class="subtitle" style="color: var(--gold);"><i class="fas fa-hard-hat"></i> Ingeniería Civil</span>
+            <h1>Solidez & <br>Garantía</h1>
+            <p class="lead">Especialistas en Drywall, Obras Civiles y Mantenimiento Corporativo bajo estándares SSOMA.</p>
+            <div>
+                <button onclick="openModal()" class="btn-main btn-gold">Cotizar Proyecto</button>
+            </div>
         </div>
 
         <div class="hero-design">
-            <h3 style="color: #555; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-pencil-ruler"></i> Módulo de Diseño
-            </h3>
-            <h1>Decor.in</h1>
-            <p class="lead">Interiorismo, Renders 3D y Acabados.</p>
-            <a href="decorin.html" class="btn btn-outline">Ingresar al Sitio &rarr;</a>
+            <span class="subtitle" style="color: var(--midnight);"><i class="fas fa-pencil-ruler"></i> Interiorismo de Lujo</span>
+            <h1 style="color: var(--midnight);">Decor.in</h1>
+            <p class="lead" style="color: var(--slate);">Transformamos espacios mediante arquitectura interior, acabados exclusivos y visualización 3D.</p>
+            <div>
+                <a href="decorin.html" class="btn-main btn-dark">Explorar Diseño &rarr;</a>
+            </div>
         </div>
     </div>
 
     <div id="quoteModal" class="modal">
         <div class="modal-content">
-            <span onclick="closeQuoteModal()" class="close-modal">&times;</span>
-            <h3 style="color: #002B5B;">Cotización Corporativa</h3>
-            <p style="font-size:0.9rem; color:#666; margin-bottom: 20px;">Solicitud para el área de Ingeniería.</p>
-            <form id="contactForm">
-                <div class="form-group"><label>Empresa:</label><input type="text" name="name" required></div>
-                <div class="form-group"><label>Teléfono:</label><input type="tel" name="phone" required></div>
-                <div class="form-group"><label>Servicio:</label>
-                    <select name="service"><option>Drywall</option><option>Obra Civil</option><option>Otros</option></select>
+            <span onclick="closeModal()" style="position:absolute; right:20px; top:20px; cursor:pointer; font-size:1.5rem; color:#888;">&times;</span>
+            <h2 style="color: var(--midnight); margin-top:0;">Nueva Cotización</h2>
+            <p style="color: var(--slate); font-size: 0.9rem; margin-bottom: 20px;">Solicitud directa al área de Ingeniería.</p>
+            <form id="quoteForm">
+                <div class="form-group"><label>Empresa / Contacto</label><input type="text" required></div>
+                <div class="form-group"><label>Teléfono</label><input type="tel" required></div>
+                <div class="form-group">
+                    <label>Servicio</label>
+                    <select><option>Drywall</option><option>Obra Civil</option><option>Mantenimiento</option></select>
                 </div>
-                <div class="form-group"><label>Detalles:</label><textarea name="message" rows="3" required></textarea></div>
-                <button type="submit" class="btn-submit">Enviar</button>
+                <div class="form-group"><label>Detalle</label><textarea rows="3"></textarea></div>
+                <button type="submit" class="btn-main btn-dark" style="width:100%;">Enviar Solicitud</button>
             </form>
         </div>
     </div>
 
-    <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem; position: fixed; bottom: 0; width: 100%;">
-        &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
+    <footer>
+        &copy; 2025 <strong style="color: var(--gold);">Grupo SERGESAC</strong>. Solidez y Garantía. Todos los derechos reservados.
     </footer>
 
     <script>
-        function openQuoteModal() { document.getElementById('quoteModal').style.display = 'flex'; }
-        function closeQuoteModal() { document.getElementById('quoteModal').style.display = 'none'; }
-        window.onclick = function(e) { if (e.target.classList.contains('modal')) closeQuoteModal(); }
-    </script>
+        function openModal() { document.getElementById('quoteModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('quoteModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        window.onclick = function(e) { if (e.target == document.getElementById('quoteModal')) closeModal(); }
 
-    <script>
-    // Función para abrir/cerrar el menú
-    function toggleMenu() {
-        const menu = document.getElementById('mainMenu');
-        menu.classList.toggle('active');
-    }
-
-    // Cerrar el menú automáticamente al hacer clic en un enlace (para móviles)
-    document.querySelectorAll('.main-nav a').forEach(link => {
-        link.addEventListener('click', () => {
+        function toggleMenu() {
             const menu = document.getElementById('mainMenu');
-            menu.classList.remove('active');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainMenu').classList.remove('active');
+            });
         });
-    });
     </script>
 
 </body>
