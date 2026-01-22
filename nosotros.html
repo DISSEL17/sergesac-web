@@ -7,105 +7,204 @@
     <link rel="stylesheet" href="css/sergesac.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .page-header {
-            background: linear-gradient(rgba(0, 43, 91, 0.9), rgba(0, 43, 91, 0.8)), url('images/construccion-bg.jpg');
-            background-size: cover; background-position: center;
-            height: 40vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; padding-top: 85px;
+        /* --- VARIABLES --- */
+        :root {
+            --midnight: #0F172A;
+            --gold: #C5A059;
+            --slate: #334155;
+            --white-smoke: #F8FAFC;
         }
-        .content-section { padding: 80px 5%; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
-        h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 20px; }
-        p { margin-bottom: 20px; color: #555; font-size: 1.1rem; }
-        
-        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
-        .value-card { background: #f9f9f9; padding: 40px 30px; text-align: center; border-radius: 8px; transition: 0.3s; }
-        .value-card:hover { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
-        .value-card i { font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px; }
 
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--white-smoke); }
+
+        /* =========================================
+           1. HEADER ESTRUCTURAL (Idéntico al Index)
+           ========================================= */
+        header {
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000; box-sizing: border-box;
+        }
+
+        /* LOGO */
+        .brand-logo {
+            display: block; height: 85px; width: 250px; position: relative; overflow: hidden; flex-shrink: 0;
+        }
+        .brand-logo img {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;
+        }
+
+        /* NAV (Centro) */
+        .main-nav {
+            position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 30px;
+        }
+
+        /* CONTENEDOR DERECHO */
+        .header-right { display: flex; align-items: center; gap: 15px; }
+
+        /* Botón WhatsApp */
+        .nav-contact {
+            background-color: var(--midnight); color: white; padding: 10px 25px; 
+            text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem; 
+            display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: 0.3s;
+        }
+
+        /* Menú Hamburguesa */
+        .menu-toggle { display: none; color: var(--midnight); background: none; border: none; font-size: 1.8rem; cursor: pointer; padding: 0; }
+
+        /* RESPONSIVE HEADER */
+        @media (max-width: 900px) {
+            header { padding: 0 20px; }
+            .brand-logo { width: 160px; }
+            .main-nav { display: none; }
+            .menu-toggle { display: block; }
+            
+            .nav-contact span { display: none; }
+            .nav-contact { padding: 8px 12px; }
+            .nav-contact i { font-size: 1.2rem; }
+            
+            .main-nav.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 85px; left: 0; width: 100%; background: white;
+                padding: 20px 0; transform: none; box-shadow: 0 10px 10px rgba(0,0,0,0.1); text-align: center;
+            }
+        }
+
+        /* =========================================
+           2. ESTILOS DE LA PÁGINA NOSOTROS
+           ========================================= */
+        .page-header {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('images/construccion-bg.jpg');
+            background-size: cover; background-position: center;
+            height: 350px; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; margin-top: 85px; /* IMPORTANTE: Espacio para el header fijo */
+        }
+
+        .content-section { padding: 80px 5%; background-color: var(--white-smoke); }
+        
+        .grid-2 { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; 
+            align-items: center; max-width: 1200px; margin: 0 auto; 
+        }
+
+        h2 { color: var(--midnight); font-size: 2.2rem; margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+        h3 { color: var(--midnight); margin-bottom: 10px; font-weight: 700; font-size: 1.2rem; }
+        p { color: var(--slate); font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; }
+        
+        /* Cajas de Misión/Visión */
+        .info-box {
+            background: white; padding: 30px; border-left: 5px solid var(--midnight); 
+            margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 0 4px 4px 0;
+        }
+
+        /* Grid de Valores */
+        .values-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; margin-top: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; 
+        }
+
+        .value-card { 
+            background: white; padding: 40px 30px; text-align: center; 
+            border-radius: 8px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 3px solid transparent;
+        }
+
+        .value-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-top: 3px solid var(--gold); }
+        .value-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+
+        @media (max-width: 768px) { 
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; } 
+            .page-header h1 { font-size: 2rem; }
+        }
+
+        footer { background: #0a0f1d; color: #64748b; text-align: center; padding: 30px; font-size: 0.85rem; border-top: 1px solid #1e293b; }
     </style>
 </head>
 <body>
 
-<body>
-
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); height: 85px; position: fixed; width: 100%; top: 0; z-index: 1000;">
-        
-        <a href="index.html" class="brand-logo" style="display: block; height: 85px; width: 250px; position: relative; overflow: hidden;">
-            <img src="images/logo-sergesacv2.png" alt="SERGESAC" 
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto; object-fit: cover;">
+    <header>
+        <a href="index.html" class="brand-logo">
+            <img src="images/logo-sergesacv2.png" alt="SERGESAC">
         </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
 
         <nav id="mainMenu" class="main-nav">
-            <a href="index.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">INICIO</a>
-            <a href="nosotros.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">NOSOTROS</a>
-            <a href="catalogo.html" style="text-decoration: none; color: #002B5B; font-weight: 600;">CATÁLOGOS</a>
+            <a href="index.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">INICIO</a>
+            <a href="nosotros.html" style="text-decoration: none; color: #C5A059; font-weight: 700;">NOSOTROS</a>
+            <a href="catalogo.html" style="text-decoration: none; color: #0F172A; font-weight: 600;">CATÁLOGOS</a>
         </nav>
 
-        <a href="https://wa.me/51999999999" target="_blank" class="nav-contact" style="background-color: #002B5B; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
-            <i class="fab fa-whatsapp"></i> <span>Contacto</span>
-        </a>
-
+        <div class="header-right">
+            <a href="https://wa.me/51999999999" target="_blank" class="nav-contact">
+                <i class="fab fa-whatsapp"></i> <span>WHATSAPP</span>
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </header>
 
-    <section class="page-header" style="margin-top: 85px; background: linear-gradient(rgba(0, 43, 91, 0.9), rgba(0, 43, 91, 0.8)), url('images/construccion-bg.jpg'); background-size: cover; height: 300px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+    <section class="page-header">
         <div>
-            <h1 style="font-size: 2.5rem; text-transform: uppercase;">Nuestra Empresa</h1>
-            <p>Solidez y Garantía en cada proyecto</p>
+            <h1 style="font-size: 3rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; margin-bottom: 10px;">Nuestra Empresa</h1>
+            <p style="color: #C5A059; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Solidez y Garantía en cada proyecto</p>
         </div>
     </section>
 
     <section class="content-section">
         <div class="grid-2">
             <div>
-                <small style="color: #C5A059; font-weight: bold;">SOBRE SERGESAC</small>
+                <small style="color: #C5A059; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 10px;">Sobre SERGESAC</small>
                 <h2>Más que una constructora, <br>somos sus socios.</h2>
-                <p>Nacimos con la visión de unificar la ingeniería civil con el diseño arquitectónico, ofreciendo una solución "llave en mano".</p>
-                <p>Contamos con un equipo multidisciplinario listo para atender requerimientos corporativos y residenciales con los más altos estándares de seguridad.</p>
+                <p>Nacimos con la visión de unificar la ingeniería civil con el diseño arquitectónico, ofreciendo una solución "llave en mano" que optimiza tiempos y recursos.</p>
+                <p>Contamos con un equipo multidisciplinario listo para atender requerimientos corporativos y residenciales con los más altos estándares de seguridad y estética.</p>
             </div>
+            
             <div>
-                <div style="background: #f4f4f4; padding: 30px; border-left: 5px solid #002B5B; margin-bottom: 20px;">
-                    <h3 style="color: #002B5B;">Misión</h3>
-                    <p style="margin:0; font-size: 0.9rem;">Brindar soluciones integrales garantizando seguridad y calidad.</p>
+                <div class="info-box">
+                    <h3><i class="fas fa-bullseye" style="color: var(--midnight); margin-right: 10px;"></i>Misión</h3>
+                    <p style="margin:0; font-size: 0.95rem;">Brindar soluciones integrales de ingeniería y diseño garantizando seguridad, calidad y el cumplimiento estricto de los plazos.</p>
                 </div>
-                <div style="background: #f4f4f4; padding: 30px; border-left: 5px solid #C5A059;">
-                    <h3 style="color: #002B5B;">Visión</h3>
-                    <p style="margin:0; font-size: 0.9rem;">Ser líderes en gestión de proyectos y acabados en Lima.</p>
+                <div class="info-box" style="border-left-color: #C5A059;">
+                    <h3><i class="fas fa-eye" style="color: var(--gold); margin-right: 10px;"></i>Visión</h3>
+                    <p style="margin:0; font-size: 0.95rem;">Ser referentes líderes en la gestión de proyectos de construcción y acabados de lujo en todo el territorio nacional.</p>
                 </div>
             </div>
         </div>
         
         <div class="values-grid">
-            <div class="value-card"><i class="fas fa-shield-alt"></i><h3>Seguridad</h3><p>Cumplimiento estricto de normas SSOMA.</p></div>
-            <div class="value-card"><i class="fas fa-clock"></i><h3>Puntualidad</h3><p>Respetamos los cronogramas de obra.</p></div>
-            <div class="value-card"><i class="fas fa-drafting-compass"></i><h3>Diseño</h3><p>Estética y funcionalidad unidas.</p></div>
+            <div class="value-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Seguridad</h3>
+                <p>Cumplimiento estricto de todas las normas SSOMA y estándares de obra.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-clock"></i>
+                <h3>Puntualidad</h3>
+                <p>Entregas precisas respetando los cronogramas acordados con el cliente.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-drafting-compass"></i>
+                <h3>Diseño</h3>
+                <p>Búsqueda constante de la armonía entre la estética moderna y la funcionalidad civil.</p>
+            </div>
         </div>
     </section>
 
-        <script>
-    // Función para abrir/cerrar el menú
-    function toggleMenu() {
-        const menu = document.getElementById('mainMenu');
-        menu.classList.toggle('active');
-    }
-
-    // Cerrar el menú automáticamente al hacer clic en un enlace (para móviles)
-    document.querySelectorAll('.main-nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            const menu = document.getElementById('mainMenu');
-            menu.classList.remove('active');
-        });
-    });
-    </script>
-
-    <footer style="background: #111; color: #888; text-align: center; padding: 20px; font-size: 0.8rem;">
-        &copy; 2025 <strong>Grupo SERGESAC</strong>. Todos los derechos reservados.
+    <footer style="background: #0a0f1d; color: #64748b; text-align: center; padding: 30px; font-size: 0.85rem; border-top: 1px solid #1e293b;">
+        &copy; 2025 <strong style="color: #C5A059;">Grupo SERGESAC</strong>. Solidez y Garantía en cada proyecto.
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainMenu').classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
